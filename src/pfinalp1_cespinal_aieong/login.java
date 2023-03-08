@@ -369,12 +369,12 @@ public class login extends javax.swing.JFrame {
         MenuJuegos mj = new MenuJuegos();
         String userstring = nameusuario.getText();
         String passstring = passusuario.getText();
-        System.out.println("llega");
+        
         if (userstring.equals("Fortin") && passstring.equals("absolutoidolo")) {
             JOptionPane.showMessageDialog(null, "Modo administrador activado");
             JOptionPane.showMessageDialog(null, "ACCEDIENDO!");
             mj.userin = "Fortin";
-            System.out.println(mj.userin);
+            System.out.println("login "+mj.userin);
             mj.setVisible(true);
             this.dispose();
         }
