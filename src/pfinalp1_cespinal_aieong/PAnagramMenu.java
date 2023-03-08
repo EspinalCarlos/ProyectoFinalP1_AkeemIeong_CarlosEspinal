@@ -4,28 +4,26 @@ import javax.swing.JOptionPane;
 
 public class PAnagramMenu extends javax.swing.JFrame {
 
-    
-    public PAnagramMenu() {
-        MenuJuegos mj2 = new MenuJuegos();
-        initComponents();
-        adminver(mj2.userin);
-        System.out.println(mj2.userin);
-    }
-    
-    public boolean adminver(String verificacion){
-        
-        if(verificacion.equals("Fortin")) {
+    public String[] liscons;
+    public void adminver(String verification){
+        if(verification.equals("Fortin")){
             listcreator.setVisible(true);
-            return true;
-        }
-        else{
-            if(!"Fortin".equals(verificacion)){
-                listcreator.setVisible(false);
-            }
-            return false;
         }
     }
-
+    public PAnagramMenu(String adveruser) {
+        initComponents();
+        adminver(adveruser);
+        
+    }
+    private String[] makeList(String[] array){
+        for (int i = 0; i < array.length; i++) {
+            String word = JOptionPane.showInputDialog("Ingrese una palabra: ");
+            array[i] = word;
+        }
+        return array;
+    }
+    
+   
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -38,7 +36,7 @@ public class PAnagramMenu extends javax.swing.JFrame {
         ez = new javax.swing.JButton();
         mid = new javax.swing.JButton();
         expert = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        SalidaPAnagram = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         listcreator = new javax.swing.JButton();
 
@@ -107,9 +105,14 @@ public class PAnagramMenu extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(255, 0, 0));
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Salir");
+        SalidaPAnagram.setBackground(new java.awt.Color(255, 0, 0));
+        SalidaPAnagram.setForeground(new java.awt.Color(255, 255, 255));
+        SalidaPAnagram.setText("Salir");
+        SalidaPAnagram.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalidaPAnagramActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel3.setText("Eliga la dificultad:");
@@ -117,6 +120,7 @@ public class PAnagramMenu extends javax.swing.JFrame {
         listcreator.setBackground(new java.awt.Color(255, 255, 255));
         listcreator.setForeground(new java.awt.Color(0, 0, 0));
         listcreator.setText("Crear lista");
+        listcreator.setVisible(false);
         listcreator.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listcreatorActionPerformed(evt);
@@ -147,7 +151,7 @@ public class PAnagramMenu extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(listcreator)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4)
+                .addComponent(SalidaPAnagram)
                 .addGap(17, 17, 17))
         );
         jPanel2Layout.setVerticalGroup(
@@ -165,7 +169,7 @@ public class PAnagramMenu extends javax.swing.JFrame {
                 .addComponent(expert)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
+                    .addComponent(SalidaPAnagram)
                     .addComponent(listcreator))
                 .addGap(22, 22, 22))
         );
@@ -178,7 +182,7 @@ public class PAnagramMenu extends javax.swing.JFrame {
 
     
     private void ezActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ezActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_ezActionPerformed
 
     private void midActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_midActionPerformed
@@ -190,8 +194,20 @@ public class PAnagramMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_expertActionPerformed
 
     private void listcreatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listcreatorActionPerformed
-        JOptionPane.showInputDialog("De cuantas rondas sera el juego?: ");
+        String rondasS = JOptionPane.showInputDialog(null,"Ingrese el numero de rondas: ");
+        int rondas = Integer.parseInt(rondasS);
+        String[] listapalabras = new String[rondas];
+        String[] listafin = makeList(listapalabras);
+        
+        
+        
     }//GEN-LAST:event_listcreatorActionPerformed
+
+    private void SalidaPAnagramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalidaPAnagramActionPerformed
+       MenuJuegos mj = new MenuJuegos(); 
+       this.dispose();
+       mj.setVisible(true);
+    }//GEN-LAST:event_SalidaPAnagramActionPerformed
 
   
     public static void main(String args[]) {
@@ -221,15 +237,15 @@ public class PAnagramMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PAnagramMenu().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton SalidaPAnagram;
     private javax.swing.JButton expert;
     private javax.swing.JButton ez;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

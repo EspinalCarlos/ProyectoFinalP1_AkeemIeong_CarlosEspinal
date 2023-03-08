@@ -232,6 +232,7 @@ public class MenuJuegos extends javax.swing.JFrame {
 
     private void ProjectAnagramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProjectAnagramActionPerformed
         gamepreview.setSelectedIndex(2);
+        System.out.println(userin);
     }//GEN-LAST:event_ProjectAnagramActionPerformed
 
     private void SpaceInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SpaceInvActionPerformed
@@ -248,10 +249,12 @@ public class MenuJuegos extends javax.swing.JFrame {
     }//GEN-LAST:event_LogOutActionPerformed
 
     private void PAnagramPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PAnagramPlayActionPerformed
-        PAnagramMenu menuaccess = new PAnagramMenu();
+
+        PAnagramMenu menuaccess = new PAnagramMenu(userin);
         this.dispose();
         menuaccess.setVisible(true);
-        System.out.println(userin);
+
+        
         
     }//GEN-LAST:event_PAnagramPlayActionPerformed
 
