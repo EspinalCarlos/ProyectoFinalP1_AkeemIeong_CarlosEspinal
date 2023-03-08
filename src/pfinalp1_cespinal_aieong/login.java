@@ -365,6 +365,7 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_passusuarioActionPerformed
 
     private void initsessionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_initsessionActionPerformed
+
         MenuJuegos mj = new MenuJuegos();
         String userstring = nameusuario.getText();
         String passstring = passusuario.getText();
@@ -372,6 +373,8 @@ public class login extends javax.swing.JFrame {
         if (userstring.equals("Fortin") && passstring.equals("absolutoidolo")) {
             JOptionPane.showMessageDialog(null, "Modo administrador activado");
             JOptionPane.showMessageDialog(null, "ACCEDIENDO!");
+            mj.userin = "Fortin";
+            System.out.println(mj.userin);
             mj.setVisible(true);
             this.dispose();
         }
@@ -383,7 +386,9 @@ public class login extends javax.swing.JFrame {
 
             if (userstring.equals(userver) && passstring.equals(passver)) {
                 JOptionPane.showMessageDialog(null, "ACCEDIENDO!");
+                mj.userin = userver;
                 mj.setVisible(true);
+                System.out.println(mj.userin);
                 this.dispose();
             } else{
                 System.out.println("Nuay");
