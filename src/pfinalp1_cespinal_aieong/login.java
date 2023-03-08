@@ -131,9 +131,9 @@ public class login extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(88, 88, 88)
                 .addComponent(iniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(28, 28, 28)
                 .addComponent(regi, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addComponent(exitmscreen)
                 .addContainerGap())
         );
@@ -365,20 +365,28 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_passusuarioActionPerformed
 
     private void initsessionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_initsessionActionPerformed
-
+        MenuJuegos mj = new MenuJuegos();
         String userstring = nameusuario.getText();
         String passstring = passusuario.getText();
         System.out.println("llega");
+        if (userstring.equals("Fortin") && passstring.equals("absolutoidolo")) {
+            JOptionPane.showMessageDialog(null, "Modo administrador activado");
+            JOptionPane.showMessageDialog(null, "ACCEDIENDO!");
+            mj.setVisible(true);
+            this.dispose();
+        }
         System.out.println(reg.size());
         for (int i = 0; i < reg.size(); i++) {
             Usuario usuario = reg.get(i);
             String userver = usuario.getUsername();
             String passver = usuario.getPassword();
-            
+
             if (userstring.equals(userver) && passstring.equals(passver)) {
                 JOptionPane.showMessageDialog(null, "ACCEDIENDO!");
+                mj.setVisible(true);
+                this.dispose();
             } else{
-                System.out.println("no hay");
+                System.out.println("Nuay");
             }
             
         }
