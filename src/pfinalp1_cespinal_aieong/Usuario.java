@@ -1,6 +1,7 @@
 
 package pfinalp1_cespinal_aieong;
 
+import java.util.*;
 
 public class Usuario {
     private String Username;
@@ -39,7 +40,15 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "Username=" + Username + ", Correo=" + Correo + ", Password=" + Password + '}';
+        return "Username=" + Username + ", Correo=" + Correo + ", Password=" + Password + '}';
+    }
+    public String toString2(ArrayList<Usuario> registro){
+        String fin = "";
+        for (int i = 0; i < registro.size(); i++) {
+            Usuario usuario = registro.get(i);
+            fin += usuario.getUsername()+"\n"+usuario.getCorreo()+"\n"+usuario.getPassword();
+        }
+        return fin;
     }
     
     

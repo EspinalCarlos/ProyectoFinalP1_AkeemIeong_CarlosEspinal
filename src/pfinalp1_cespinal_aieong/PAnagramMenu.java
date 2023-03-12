@@ -1,27 +1,39 @@
 
 package pfinalp1_cespinal_aieong;
 import javax.swing.JOptionPane;
+import java.util.*;
 
 public class PAnagramMenu extends javax.swing.JFrame {
-
-    public String[] liscons;
+    private ArrayList<Usuario> reg3 = new ArrayList<>();
+    private String usuarioin;
+    public String[] listafin;
+    
+    //VERIFICAR QUE EL USUARIO TIENE ADMIN PARA HABILITAR OPCION DE CREAR LISTA
     public void adminver(String verification){
         if(verification.equals("Fortin")){
             listcreator.setVisible(true);
         }
     }
-    public PAnagramMenu(String adveruser) {
+    
+    //CONSTRUCTOR
+    public PAnagramMenu(String adveruser, ArrayList<Usuario> registro, String[] ListaPalabras) {
         initComponents();
         adminver(adveruser);
+        this.reg3 = registro;
+        this.usuarioin = adveruser;
+        this.listafin = ListaPalabras;
         
     }
     private String[] makeList(String[] array){
+        int cont = 0;
         for (int i = 0; i < array.length; i++) {
             String word = JOptionPane.showInputDialog("Ingrese una palabra: ");
             array[i] = word;
         }
         return array;
     }
+    
+    
     
    
     
@@ -197,14 +209,14 @@ public class PAnagramMenu extends javax.swing.JFrame {
         String rondasS = JOptionPane.showInputDialog(null,"Ingrese el numero de rondas: ");
         int rondas = Integer.parseInt(rondasS);
         String[] listapalabras = new String[rondas];
-        String[] listafin = makeList(listapalabras);
+        listafin = makeList(listapalabras);
         
         
         
     }//GEN-LAST:event_listcreatorActionPerformed
 
     private void SalidaPAnagramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalidaPAnagramActionPerformed
-       MenuJuegos mj = new MenuJuegos(); 
+       MenuJuegos mj = new MenuJuegos(reg3,usuarioin,listafin); 
        this.dispose();
        mj.setVisible(true);
     }//GEN-LAST:event_SalidaPAnagramActionPerformed

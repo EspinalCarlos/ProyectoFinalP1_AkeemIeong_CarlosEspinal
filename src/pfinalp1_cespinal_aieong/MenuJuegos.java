@@ -1,15 +1,21 @@
 
 package pfinalp1_cespinal_aieong;
 
+import java.util.ArrayList;
 
 public class MenuJuegos extends javax.swing.JFrame {
 
-  
-    public MenuJuegos() {
+    private ArrayList<Usuario> reg2 = new ArrayList<>();
+    private String userin;
+    private String[] wordlist;
+    
+    public MenuJuegos(ArrayList<Usuario> registro, String UsuarioDentro, String[] ListaPalabras) {
         initComponents();
+        this.reg2 = registro;
+        this.userin = UsuarioDentro;
+        this.wordlist = ListaPalabras;
     }
     
-    public String userin = "";
 
     
     @SuppressWarnings("unchecked")
@@ -233,6 +239,7 @@ public class MenuJuegos extends javax.swing.JFrame {
     private void ProjectAnagramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProjectAnagramActionPerformed
         gamepreview.setSelectedIndex(2);
         System.out.println(userin);
+        System.out.println(reg2.toString());
     }//GEN-LAST:event_ProjectAnagramActionPerformed
 
     private void SpaceInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SpaceInvActionPerformed
@@ -240,17 +247,19 @@ public class MenuJuegos extends javax.swing.JFrame {
     }//GEN-LAST:event_SpaceInvActionPerformed
 
     private void LogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutActionPerformed
-        login lg = new login();
+        login log = new login(reg2,wordlist);
         this.dispose();
         userin = "";
         System.out.println("logout"+userin);
-        lg.setVisible(true);
+        log.setVisible(true);
+        
+        
         
     }//GEN-LAST:event_LogOutActionPerformed
 
     private void PAnagramPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PAnagramPlayActionPerformed
 
-        PAnagramMenu menuaccess = new PAnagramMenu(userin);
+        PAnagramMenu menuaccess = new PAnagramMenu(userin,reg2,wordlist);
         this.dispose();
         menuaccess.setVisible(true);
 
@@ -288,7 +297,7 @@ public class MenuJuegos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuJuegos().setVisible(true);
+                
             }
         });
     }

@@ -6,11 +6,15 @@ import java.util.ArrayList;
 
 public class login extends javax.swing.JFrame {
 
-
-    public login() {
+    private ArrayList<Usuario> reg = new ArrayList<>();
+    private String[] wlist;
+    
+    public login(ArrayList<Usuario> registro , String[] ListaPalabras) {
         initComponents();
+        this.reg = registro;
+        this.wlist = ListaPalabras;
     }
-    public ArrayList<Usuario> reg = new ArrayList<>();
+   
     
    
     
@@ -365,17 +369,18 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_passusuarioActionPerformed
 
     private void initsessionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_initsessionActionPerformed
-
-        MenuJuegos mj = new MenuJuegos();
+        String usuarioin = "";
+        
         String userstring = nameusuario.getText();
         String passstring = passusuario.getText();
         
         if (userstring.equals("Fortin") && passstring.equals("absolutoidolo")) {
             JOptionPane.showMessageDialog(null, "Modo administrador activado");
             JOptionPane.showMessageDialog(null, "ACCEDIENDO!");
-            mj.userin = "Fortin";
-            System.out.println("login "+mj.userin);
+            usuarioin = "Fortin";
+            MenuJuegos mj = new MenuJuegos(reg,usuarioin,wlist);
             mj.setVisible(true);
+            System.out.println(usuarioin);
             this.dispose();
         }
         System.out.println(reg.size());
@@ -386,14 +391,14 @@ public class login extends javax.swing.JFrame {
 
             if (userstring.equals(userver) && passstring.equals(passver)) {
                 JOptionPane.showMessageDialog(null, "ACCEDIENDO!");
-                mj.userin = userver;
+                usuarioin = userver;
+                MenuJuegos mj = new MenuJuegos(reg,usuarioin,wlist);
                 mj.setVisible(true);
-                System.out.println(mj.userin);
+                System.out.println(usuarioin);
                 this.dispose();
-            } else{
-                System.out.println("Nuay");
+            } else if(i == reg.size()-1 && userstring != userver || i == reg.size() && passstring != passver){
+                JOptionPane.showMessageDialog(null, "Nombre de usuario o password incorrectos");
             }
-            
         }
     }//GEN-LAST:event_initsessionActionPerformed
 
@@ -420,6 +425,13 @@ public class login extends javax.swing.JFrame {
         String prueba = use.toString();
         System.out.println(prueba);
         reg.add(use);
+        System.out.println(reg.toString());
+        
+        if (wlist != null) {
+            for (int i = 0; i < wlist.length; i++) {
+                System.out.println(wlist[i]);
+            }
+        }
         
         
     }//GEN-LAST:event_registarrayActionPerformed
@@ -454,7 +466,7 @@ public class login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new login().setVisible(true);
+               
             }
         });
     }
