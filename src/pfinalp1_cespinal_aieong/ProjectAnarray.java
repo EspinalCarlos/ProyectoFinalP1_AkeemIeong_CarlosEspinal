@@ -58,8 +58,7 @@ public class ProjectAnarray extends javax.swing.JFrame {
         roundCounter = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         propWord = new javax.swing.JLabel();
-        wordIngrese = new javax.swing.JTextField();
-        verifyWord = new javax.swing.JButton();
+        ingresarJuego = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -95,7 +94,7 @@ public class ProjectAnarray extends javax.swing.JFrame {
         propWord.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         propWord.setForeground(new java.awt.Color(255, 255, 255));
         propWord.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        propWord.setText("PLACEHOLDER");
+        propWord.setText("Presionar para accceder");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -103,8 +102,8 @@ public class ProjectAnarray extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(propWord, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addComponent(propWord, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,13 +113,10 @@ public class ProjectAnarray extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        wordIngrese.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        wordIngrese.setText("Anagrama aqui");
-
-        verifyWord.setText("Verificar");
-        verifyWord.addActionListener(new java.awt.event.ActionListener() {
+        ingresarJuego.setText("Iniciar");
+        ingresarJuego.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                verifyWordActionPerformed(evt);
+                ingresarJuegoActionPerformed(evt);
             }
         });
 
@@ -134,27 +130,22 @@ public class ProjectAnarray extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
+                        .addGap(101, 101, 101)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
-                        .addComponent(wordIngrese, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(156, 156, 156)
-                        .addComponent(verifyWord)))
+                        .addGap(160, 160, 160)
+                        .addComponent(ingresarJuego)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
+                .addGap(111, 111, 111)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(wordIngrese, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(verifyWord)
-                .addGap(0, 151, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ingresarJuego)
+                .addGap(0, 204, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 430));
@@ -163,32 +154,30 @@ public class ProjectAnarray extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void verifyWordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verifyWordActionPerformed
-        boolean wv = true;
-        String w1 = propWord.getText();
-        String w2 = wordIngrese.getText();
-        wv = wordVerification(w1,w2);
-        
-        if (Vidas != 0){
-            if(wv == false){
+    private void ingresarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarJuegoActionPerformed
+        for (int i = 0; i < wlist.length; i++) {
+            String w1 = wlist[i];
+            String w2 = JOptionPane.showInputDialog("Esta es la palabra: "+w1);
+            boolean wv = wordVerification(w1,w2);
+            if (wv == false) {
                 JOptionPane.showMessageDialog(null, "no");
+                i--;
                 Vidas--;
-            } else if(wv == true && wlist.length > 1){
-                
-            } else if(wv == true && wlist.length == 1){
-                this.dispose();
-                PAnagramMenu pam = new PAnagramMenu(userin,reg4,wlist);
-                pam.setVisible(true);
-                JOptionPane.showMessageDialog(null, "USTED GANO!!");
+                if(Vidas == 0){
+                    this.dispose();
+                    PAnagramMenu pan = new PAnagramMenu(userin,reg4,wlist);
+                    pan.setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Usted ha perdido");
+                    break;
+                    
+                }
             }
-        } else{
-            this.dispose();
-            PAnagramMenu pam = new PAnagramMenu(userin,reg4,wlist);
-            pam.setVisible(true);
-            JOptionPane.showMessageDialog(null, "Usted ha perdido");
         }
-        
-    }//GEN-LAST:event_verifyWordActionPerformed
+        PAnagramMenu pan = new PAnagramMenu(userin,reg4,wlist);
+        JOptionPane.showMessageDialog(null, "USTED HA GANADO!!");
+        this.dispose();
+        pan.setVisible(true);
+    }//GEN-LAST:event_ingresarJuegoActionPerformed
 
     
     public static void main(String args[]) {
@@ -224,12 +213,11 @@ public class ProjectAnarray extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton ingresarJuego;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     public javax.swing.JLabel propWord;
     public javax.swing.JLabel roundCounter;
-    public javax.swing.JButton verifyWord;
-    private javax.swing.JTextField wordIngrese;
     // End of variables declaration//GEN-END:variables
 }

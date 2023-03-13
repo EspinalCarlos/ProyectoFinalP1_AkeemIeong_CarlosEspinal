@@ -197,14 +197,8 @@ public class PAnagramMenu extends javax.swing.JFrame {
     private void ezActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ezActionPerformed
         
         int lives = 5;
-        String rounds = "";
-        rounds += listafin.length;
-        int i = 0;
-        
-        
         ProjectAnarray PA = new ProjectAnarray(usuarioin,reg3,listafin,lives);
-        PA.propWord.setText(listafin[0]);
-        PA.roundCounter.setText("Ronda "+(i+1));
+        PA.roundCounter.setText("Dificultad: Facil");
         this.dispose();
         PA.setVisible(true);
         
@@ -218,7 +212,8 @@ public class PAnagramMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_midActionPerformed
 
     private void expertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expertActionPerformed
-        // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_expertActionPerformed
 
     private void listcreatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listcreatorActionPerformed
