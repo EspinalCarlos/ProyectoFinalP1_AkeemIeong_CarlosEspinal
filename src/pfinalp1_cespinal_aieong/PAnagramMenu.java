@@ -207,12 +207,20 @@ public class PAnagramMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_ezActionPerformed
 
     private void midActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_midActionPerformed
-        //
+        int lives = 3;
+        ProjectAnarray PA = new ProjectAnarray(usuarioin,reg3,listafin,lives);
+        PA.roundCounter.setText("Dificultad: Media");
+        this.dispose();
+        PA.setVisible(true);
         
     }//GEN-LAST:event_midActionPerformed
 
     private void expertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expertActionPerformed
-        
+        int lives = 1;
+        ProjectAnarray PA = new ProjectAnarray(usuarioin,reg3,listafin,lives);
+        PA.roundCounter.setText("Dificultad: Experta");
+        this.dispose();
+        PA.setVisible(true);
         
     }//GEN-LAST:event_expertActionPerformed
 
