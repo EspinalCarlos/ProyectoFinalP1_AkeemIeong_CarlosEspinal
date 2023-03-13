@@ -2,6 +2,7 @@
 package pfinalp1_cespinal_aieong;
 import javax.swing.JOptionPane;
 import java.util.*;
+import javax.swing.*;
 
 public class PAnagramMenu extends javax.swing.JFrame {
     private ArrayList<Usuario> reg3 = new ArrayList<>();
@@ -195,10 +196,25 @@ public class PAnagramMenu extends javax.swing.JFrame {
     
     private void ezActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ezActionPerformed
         
+        int lives = 5;
+        String rounds = "";
+        rounds += listafin.length;
+        int i = 0;
+        
+        
+        ProjectAnarray PA = new ProjectAnarray(usuarioin,reg3,listafin,lives);
+        PA.propWord.setText(listafin[0]);
+        PA.roundCounter.setText("Ronda "+(i+1));
+        this.dispose();
+        PA.setVisible(true);
+        
+        
+        
     }//GEN-LAST:event_ezActionPerformed
 
     private void midActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_midActionPerformed
-        // TODO add your handling code here:
+        //
+        
     }//GEN-LAST:event_midActionPerformed
 
     private void expertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expertActionPerformed
