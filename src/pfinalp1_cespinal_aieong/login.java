@@ -108,8 +108,9 @@ public class login extends javax.swing.JFrame {
             }
         });
 
-        exitmscreen.setBackground(new java.awt.Color(255, 0, 0));
+        exitmscreen.setBackground(new java.awt.Color(255, 204, 0));
         exitmscreen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pfinalp1_cespinal_aieong/exit_1_8.png"))); // NOI18N
+        exitmscreen.setBorder(null);
         exitmscreen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitmscreenActionPerformed(evt);
@@ -137,7 +138,7 @@ public class login extends javax.swing.JFrame {
                 .addComponent(iniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(regi, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
                 .addComponent(exitmscreen)
                 .addContainerGap())
         );
@@ -234,6 +235,7 @@ public class login extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Ingrese un nombre de usuario");
 
@@ -245,6 +247,7 @@ public class login extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Ingrese su correo electronico");
 
@@ -256,15 +259,18 @@ public class login extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Ingrese una password");
 
-        dmaf.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        dmaf.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        dmaf.setForeground(new java.awt.Color(255, 255, 255));
         dmaf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pfinalp1_cespinal_aieong/uy2.png"))); // NOI18N
         dmaf.setText("Se ha registrado con exito");
         dmaf.setVisible(false);
 
         registarray.setBackground(new java.awt.Color(0, 0, 0));
+        registarray.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         registarray.setForeground(new java.awt.Color(255, 255, 255));
         registarray.setText("Registrar");
         registarray.addActionListener(new java.awt.event.ActionListener() {
@@ -290,9 +296,9 @@ public class login extends javax.swing.JFrame {
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(nameregister, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(42, 42, 42)
-                .addComponent(dmaf, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(dmaf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(30, 30, 30))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(registarray)
@@ -315,7 +321,7 @@ public class login extends javax.swing.JFrame {
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(passregister, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                         .addComponent(registarray, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27))
                     .addGroup(jPanel5Layout.createSequentialGroup()
@@ -374,6 +380,10 @@ public class login extends javax.swing.JFrame {
         String userstring = nameusuario.getText();
         String passstring = passusuario.getText();
         
+        if(reg.isEmpty() && !"Fortin".equals(userstring)){
+            JOptionPane.showMessageDialog(null, "No se encuentra ningun usuario registrado \nFavor registrarse en la ventana de registro");
+        }
+        
         if (userstring.equals("Fortin") && passstring.equals("absolutoidolo")) {
             JOptionPane.showMessageDialog(null, "Modo administrador activado");
             JOptionPane.showMessageDialog(null, "ACCEDIENDO!");
@@ -384,20 +394,22 @@ public class login extends javax.swing.JFrame {
             this.dispose();
         }
         System.out.println(reg.size());
-        for (int i = 0; i < reg.size(); i++) {
-            Usuario usuario = reg.get(i);
-            String userver = usuario.getUsername();
-            String passver = usuario.getPassword();
+        if(!"Fortin".equals(userstring) && !"absolutoidolo".equals(passstring)){
+            for (int i = 0; i < reg.size(); i++) {
+                Usuario usuario = reg.get(i);
+                String userver = usuario.getUsername();
+                String passver = usuario.getPassword();
 
-            if (userstring.equals(userver) && passstring.equals(passver)) {
-                JOptionPane.showMessageDialog(null, "ACCEDIENDO!");
-                usuarioin = userver;
-                MenuJuegos mj = new MenuJuegos(reg,usuarioin,wlist);
-                mj.setVisible(true);
-                System.out.println(usuarioin);
-                this.dispose();
-            } else if(i == reg.size()-1 && userstring != userver || i == reg.size() && passstring != passver){
-                JOptionPane.showMessageDialog(null, "Nombre de usuario o password incorrectos");
+                if (userstring.equals(userver) && passstring.equals(passver)) {
+                    JOptionPane.showMessageDialog(null, "ACCEDIENDO!");
+                    usuarioin = userver;
+                    MenuJuegos mj = new MenuJuegos(reg,usuarioin,wlist);
+                    mj.setVisible(true);
+                    System.out.println(usuarioin);
+                    this.dispose();
+                } else if(i == reg.size()-1 && userstring != userver || i == reg.size() && passstring != passver){
+                    JOptionPane.showMessageDialog(null, "Nombre de usuario o password incorrectos");
+                }
             }
         }
     }//GEN-LAST:event_initsessionActionPerformed

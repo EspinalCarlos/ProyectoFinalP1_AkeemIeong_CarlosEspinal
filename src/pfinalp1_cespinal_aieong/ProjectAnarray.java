@@ -160,7 +160,7 @@ public class ProjectAnarray extends javax.swing.JFrame {
             String w2 = JOptionPane.showInputDialog("Esta es la palabra: "+w1);
             boolean wv = wordVerification(w1,w2);
             if (wv == false) {
-                JOptionPane.showMessageDialog(null, "no");
+                JOptionPane.showMessageDialog(null, "Palabra invalida!");
                 i--;
                 Vidas--;
                 if(Vidas == 0){
@@ -170,13 +170,15 @@ public class ProjectAnarray extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Usted ha perdido");
                     break;
                     
-                }
+                } 
             }
         }
-        PAnagramMenu pan = new PAnagramMenu(userin,reg4,wlist);
-        JOptionPane.showMessageDialog(null, "USTED HA GANADO!!");
-        this.dispose();
-        pan.setVisible(true);
+        if(Vidas > 0){
+            PAnagramMenu pan = new PAnagramMenu(userin,reg4,wlist);
+            JOptionPane.showMessageDialog(null, "USTED HA GANADO!!");
+            this.dispose();
+            pan.setVisible(true);
+        }
     }//GEN-LAST:event_ingresarJuegoActionPerformed
 
     
